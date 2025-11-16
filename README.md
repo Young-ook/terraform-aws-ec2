@@ -4,7 +4,8 @@
 [AWS Systems Manager](https://aws.amazon.com/systems-manager/) gives you visibility and control of your infrastructure on AWS. Systems Manager provides a unified user interface so you can view operational data from multiple AWS services and allows you to automate operational tasks across your AWS resources.
 
 ## Examples
-- [Amazon EC2 Blueprint](https://github.com/Young-ook/terraform-aws-ssm/tree/main/examples/blueprint)
+- [Amazon EC2 Blueprint](https://github.com/Young-ook/terraform-aws-ec2/tree/main/examples/blueprint)
+- [Amazon VPC Network](https://github.com/Young-ook/terraform-aws-ec2/tree/main/examples/network)
 - [AWS FIS Blueprint (Chaos Engineering)](https://github.com/Young-ook/terraform-aws-fis/blob/main/examples/blueprint)
 
 ## Getting started
