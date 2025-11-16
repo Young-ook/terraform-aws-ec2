@@ -4,7 +4,8 @@
 [시스템 매니저(AWS Systems Manager)](https://aws.amazon.com/systems-manager/)는 여러 분의 AWS 인프라스트럭처에 대한 가시성과 제어권을 제공합니다. 시스템 매니저는 통합 환경을 제공하여, 다양한 AWS 서비스의 운영 관련 데이터를 모아 볼 수 있도록 해주고 AWS 자원에 대해 운영 작업을 자동화할 수 있도록 해줍니다.
 
 ## 예제
-- [Amazon EC2 Blueprint](https://github.com/Young-ook/terraform-aws-ssm/tree/main/examples/blueprint)
+- [Amazon EC2 Blueprint](https://github.com/Young-ook/terraform-aws-ec2/tree/main/examples/blueprint)
+- [Amazon VPC Network](https://github.com/Young-ook/terraform-aws-ec2/tree/main/examples/network)
 - [AWS FIS Blueprint (Chaos Engineering)](https://github.com/Young-ook/terraform-aws-fis/blob/main/examples/blueprint)
 
 ## 시작하기
