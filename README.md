@@ -1,7 +1,7 @@
 [[English](README.md)] [[한국어](README.ko.md)]
 
-# AWS Systems Manager
-[AWS Systems Manager](https://aws.amazon.com/systems-manager/) gives you visibility and control of your infrastructure on AWS. Systems Manager provides a unified user interface so you can view operational data from multiple AWS services and allows you to automate operational tasks across your AWS resources.
+# Amazon EC2 (Elastic Compute Cloud)
+[Amazon EC2 (Elastic Compute Cloud)](https://aws.amazon.com/ec2) is secure and resizable compute capacity for virtually any workload. EC2 service offers the broadest and deepest compute platform, with over 1000 instances and choice of the latest processor, storage, networking, operating system, and purchase model to help you best match the needs of your workload.
 
 ## Examples
 - [Amazon EC2 Blueprint](https://github.com/Young-ook/terraform-aws-ec2/tree/main/examples/blueprint)
@@ -49,7 +49,7 @@ tfenv use <version>
 ### Setup
 ```
 module "ec2" {
-  source  = "Young-ook/ssm/aws"
+  source  = "Young-ook/ec2/aws"
   name    = "ssm"
   tags    = { env = "test" }
 }

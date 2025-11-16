@@ -1,7 +1,7 @@
 [[English](README.md)] [[한국어](README.ko.md)]
 
-# Network
-Amazon VPC is a SDN(Software Defined Network) service to build your private network for your appliaction. This example helps you compose complete VPC, which is a isolated secure network on AWS. With this example, you describe the configuration for the desired state of your AWS global network, such as the Virtual Private Cloud (VPC), Transit Gateway (TGW), Peered VPCs, as an Infrastructure as Code (IaC) template. Once your network is configured, you can use it to stamp out consistent environments across multiple AWS accounts and Regions using your automation workflow tool, such as Jenkins, CodePipeline. VPC Blueprint also helps you implement relevant security controls needed to operate workloads from multiple teams in the pre-configured secure network.
+# Network Blueprint
+Amazon VPC is an SDN(Software Defined Network) service to build your private network for your appliaction. This example helps you compose complete VPC, which is a isolated secure network on AWS. With this example, you describe the configuration for the desired state of your AWS global network, such as the Virtual Private Cloud (VPC), Transit Gateway (TGW), Peered VPCs, as an Infrastructure as Code (IaC) template. Once your network is configured, you can use it to stamp out consistent environments across multiple AWS accounts and Regions using your automation workflow tool, such as Jenkins, CodePipeline. VPC Blueprint also helps you implement relevant security controls needed to operate workloads from multiple teams in the pre-configured secure network.
 Also, this VPC network design blueprint shows you how to establish a hybrid network ceonnection between an isolated network and a control plane network with TGW.
 
 ## Setup
