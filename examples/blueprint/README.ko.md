@@ -1,7 +1,7 @@
 [[English](README.md)] [[한국어](README.ko.md)]
 
 # EC2 블루프린트(Blueprint)
-EC2 블루프린트 예제는 EC2 워크로드를 배포하고 운영하기 위해 필요한 소프트웨어를 자동으로 설정하는 과정을 돕는 예제입니다. EC2 블루프린트를 활용하면, 여러 분이 원하는 설정의 EC2 실행환경을 인프라스트럭처 코드(Infrastructure as Code, IaC)의 템플릿/청사진 형태로 만들 수 있습니다. 한 번 블루프린트를 설정했다면, 여러 분은 젠킨스(Jenkins) 또는 코드파이프라인(CodePipeline)과 같은 자동화 도구를 활용하여 필요에 따라 여러 AWS 계정 또는 리전에 같은 환경을 찍어낼 수 있습니다. 또한 여러 분은 EC2 블루프린트를 활용하여 EC2 user-data에 원하는 초기 설정을 등록하여 실행할 수 있습니다. 그리고 EC2 블루프린트는 여러 분이 동일한 클러스터를 여러 팀에게 제공해야 하는 워크로드를 운영해야 할 때 필요한 보안관련 사항들을 쉽게 구축하는 것을 도와줍니다.
+EC2 블루프린트 예제는 [AWS SSM (Systems Manager)](https://aws.amazon.com/systems-manager/)이 활성화된 EC2 워크로드를 배포하고 운영하기 위해 필요한 소프트웨어를 자동으로 설정하는 과정을 돕는 예제입니다. EC2 블루프린트를 활용하면, 여러 분이 원하는 설정의 EC2 실행환경을 인프라스트럭처 코드(Infrastructure as Code, IaC)의 템플릿/청사진 형태로 만들 수 있습니다. 한 번 블루프린트를 설정했다면, 여러 분은 젠킨스(Jenkins) 또는 코드파이프라인(CodePipeline)과 같은 자동화 도구를 활용하여 필요에 따라 여러 AWS 계정 또는 리전에 같은 환경을 찍어낼 수 있습니다. 또한 여러 분은 EC2 블루프린트를 활용하여 EC2 user-data에 원하는 초기 설정을 등록하여 실행할 수 있습니다. 그리고 EC2 블루프린트는 여러 분이 동일한 클러스터를 여러 팀에게 제공해야 하는 워크로드를 운영해야 할 때 필요한 보안관련 사항들을 쉽게 구축하는 것을 도와줍니다.
 
 ## 설치
 ### 필수요소
@@ -15,8 +15,8 @@ brew install jq dateutils
 ### 내려받기
 여러 분의 작업 환경에 예제를 내려받기 합니다.
 ```
-git clone https://github.com/Young-ook/terraform-aws-ssm
-cd terraform-aws-ssm/examples/blueprint
+git clone https://github.com/Young-ook/terraform-aws-ec2
+cd terraform-aws-ec2/examples/blueprint
 ```
 
 작업이 끝나면 **blueprint** 디렉토리를 볼 수 있습니다. 디렉토리 안에 있는 예제에는 EC2 클러스터와 추가 요소를 설치하고 관리하기 위한 테라폼(terraform) 설정 파일과 기타 자원이 있습니다. 다음 단계로 넘어가기 전에 테라폼이 제대로 설치 되어 있는 지 확인합니다. 만약, 테라폼이 여러 분의 환경에 없다면, 다음 단계로 이동하기 전에 메인 [페이지](https://github.com/Young-ook/terraform-aws-ssm)의 안내에 따라 설치하시기 바랍니다.

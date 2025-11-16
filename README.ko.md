@@ -1,7 +1,7 @@
 [[English](README.md)] [[한국어](README.ko.md)]
 
-# 시스템 매니저(AWS Systems Manager)
-[시스템 매니저(AWS Systems Manager)](https://aws.amazon.com/systems-manager/)는 여러 분의 AWS 인프라스트럭처에 대한 가시성과 제어권을 제공합니다. 시스템 매니저는 통합 환경을 제공하여, 다양한 AWS 서비스의 운영 관련 데이터를 모아 볼 수 있도록 해주고 AWS 자원에 대해 운영 작업을 자동화할 수 있도록 해줍니다.
+# Amazon EC2 (Elastic Compute Cloud)
+[Amazon EC2 (Elastic Compute Cloud)](https://aws.amazon.com/ec2)는 가상의 어떠한 워크로드라도 실행할 수 있는 안전하며 크기 조정이 가능한 컴퓨팅 환경입니다. EC2 서비스는 1000여개 이상의 최신 프로세서, 스토리지, 네트워킹, 운영체제, 그리고 구매 모델을 통해 고객의 요구사항에 가장 적합한 광범위하면서도 깊이 있는 컴퓨팅 플래폼입니다.
 
 ## 예제
 - [Amazon EC2 Blueprint](https://github.com/Young-ook/terraform-aws-ec2/tree/main/examples/blueprint)
@@ -49,7 +49,7 @@ tfenv use <version>
 ### 생성
 ```
 module "ec2" {
-  source  = "Young-ook/ssm/aws"
+  source  = "Young-ook/ec2/aws"
   name    = "ssm"
   tags    = { env = "test" }
 }
