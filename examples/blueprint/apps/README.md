@@ -65,3 +65,109 @@ You can use Run Command, a capability of AWS Systems Manager, from the console t
     * For Concurrency, specify either a number or a percentage of instances on which to run the command at the same time.
 1. (Optional) For Output options, to save the command output to a file, select the Write command output to an S3 bucket box. Enter the bucket and prefix (folder) names in the boxes.
 1. Choose *Run*.
+
+## Load Test (Taurus by BlazeMeter)
+[Taurus](https://gettaurus.org/) is a integrated load testing tool that hides the complexity of performance and functional tests with an automation-friendly convenience wrapper. Taurus relies on JMeter, Gatling, Locust.io, and Selenium WebDriver as its underlying tools.
+
+### Test Scenarios
+You can define your test scenarios using YAML config file and Python script file. This is an example files:
+
+test.yaml (testing environment and parameters)
+```yaml
+---
+execution:
+- executor: locust
+  concurrency: 10
+  ramp-up: 1m
+  iterations: 1000
+  scenario: hellotest
+
+scenarios:
+  hellotest:
+    default-address: ${target}
+    script: test.py
+```
+
+test.py (test cases)
+```python
+from locust import HttpUser, TaskSet, task, between
+
+class WebsiteTasks(TaskSet):
+    @task
+    def index(self):
+        self.client.get("/")
+
+    @task
+    def about(self):
+        self.client.get("/status")
+
+class WebsiteUser(HttpUser):
+    tasks = [WebsiteTasks]
+    wait_time = between(0.100, 1.500)
+```
+
+Also, you can run simple test without python script with Locust executor if your test is one of the supported cases:
+ - request methods GET/POST
+ - headers and body for requests
+ - set timeout/think-time on both scenario/request levels
+ - assertions (for body and http-code)
+
+test.yaml
+```yaml
+---
+execution:
+- executor: locust
+  concurrency: 10
+  ramp-up: 1m
+  iterations: 1000
+  scenario: hellotest
+
+scenarios:
+  request_example:
+    timeout: 10  #  global scenario timeout for connecting, receiving results, 30 seconds by default
+    think-time: 1s500ms  # global scenario delay between each request
+    default-address: ${target}  # specify a base address, so you can use short urls in requests
+    keepalive: true  # flag to use HTTP keep-alive for connections, default is true
+    requests:
+    - url: /
+      method: get
+      headers:
+        var1: val1
+      body: 'body content'
+      assert:
+      - contains:
+        - body  # list of search patterns
+        - content
+        subject: body # subject for check
+        regexp: false  # treat string as regular expression, true by default
+        not: false  # inverse assertion condition
+```
+
+### Connect
+To access the EC2 instance, go to the EC2 service on the AWS Management Conosol. Find and select the instance you want and click *Connect* button on top of the window. After then you will see three tabs EC2 Instance Connect, Session Manager, SSH client. Select Session Manager tab and follow the instruction on the screen.
+
+### Run Taurus
+You will see Taurus load testing tool in your instance, and you can run load test using it. If you need to know how to use it, run `bzt` command with `-h` option:
+
+```
+bzt -h
+Usage: bzt [options] [configs] [-aliases]
+
+BlazeMeter Taurus Tool v1.16.18, the configuration-driven test running engine
+
+Options:
+  -h, --help            show this help message and exit
+  -l LOG, --log=LOG     Log file location
+  -o OPTION, --option=OPTION
+                        Override option in config
+  -q, --quiet           Only errors and warnings printed to console
+  -v, --verbose         Prints all logging messages to console
+  -n, --no-system-configs
+                        Skip system and user config files
+```
+
+![aws-ec2-bzt-dashboard](../../../images/aws-ec2-bzt-dashboard.png)
+![aws-ec2-bzt-log](../../../images/aws-ec2-bzt-log.png)
+
+# Additional Resources
+- [Distributed Load Testing on AWS](https://github.com/aws-solutions/distributed-load-testing-on-aws)

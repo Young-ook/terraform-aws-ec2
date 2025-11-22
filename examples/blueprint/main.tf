@@ -152,6 +152,19 @@ module "ec2" {
         "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
       ]
     },
+    {
+      name            = "tester"
+      min_size        = 1
+      max_size        = 1
+      desired_size    = 1
+      instance_type   = "t3.small"
+      security_groups = var.security_groups
+      user_data = templatefile("${path.module}/apps/loadtest/taurus.tpl", {
+        config = "${path.module}/apps/loadtest/test.yaml"
+        task   = "${path.module}/apps/loadtest/test.py"
+      })
+      policy_arns = ["arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"]
+    }
   ]
 }
 
