@@ -16,8 +16,8 @@ provider "aws" {
 
 ### network/vpc
 module "vpc" {
-  source  = "Young-ook/vpc/aws"
-  version = "1.0.3"
+  source  = "Young-ook/ec2/aws//modules/vpc"
+  version = "1.0.8"
   name    = var.name
   tags    = var.tags
   vpc_config = var.use_default_vpc ? null : {
@@ -80,8 +80,8 @@ locals {
 
 ### compute
 module "ec2" {
-  source  = "Young-ook/ssm/aws"
-  version = "1.0.5"
+  source  = "Young-ook/ec2/aws"
+  version = "1.0.8"
   tags    = var.tags
   subnets = values(module.vpc.subnets["public"])
   node_groups = [

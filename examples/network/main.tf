@@ -10,8 +10,8 @@ provider "aws" {
 
 ### network/isolated
 module "vpc" {
-  source  = "Young-ook/vpc/aws"
-  version = "1.0.7"
+  source  = "Young-ook/ec2/aws//modules/vpc"
+  version = "1.0.8"
   tags    = merge(var.tags, { topology = "aws" })
   vpc_config = {
     azs         = var.azs
@@ -67,8 +67,8 @@ module "vpc" {
 
 ### network/controller
 module "corp" {
-  source  = "Young-ook/vpc/aws"
-  version = "1.0.7"
+  source  = "Young-ook/ec2/aws//modules/vpc"
+  version = "1.0.8"
   tags    = merge(var.tags, { topology = "corp" })
   vpc_config = {
     azs         = var.azs
@@ -99,7 +99,7 @@ module "corp" {
 ### network/transit
 module "tgw" {
   depends_on = [module.vpc, module.corp]
-  source     = "Young-ook/vpc/aws//modules/tgw"
+  source     = "Young-ook/ec2/aws//modules/tgw"
   version    = "1.0.8"
   tags       = var.tags
   tgw_config = {}
@@ -171,8 +171,8 @@ module "vm" {
       subnets = values(module.corp.subnets["private"])
     }
   }
-  source  = "Young-ook/ssm/aws"
-  version = "1.0.6"
+  source  = "Young-ook/ec2/aws"
+  version = "1.0.8"
   tags    = var.tags
   subnets = each.value["subnets"]
   node_groups = [
