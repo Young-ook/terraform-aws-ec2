@@ -26,11 +26,16 @@ terraform apply
 ```
 
 # Additional Resources
+
 ## Amazon ElastiCache for Redis
+- [Amazon ElastiCache Deep Dive](https://pages.awscloud.com/rs/112-TZM-766/images/Session%201%20-%20ElastiCache-DeepDive_v2_rev.pdf)
+- [ElastiCache best practices and caching strategies](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/BestPractices.html)
+- [Common ElastiCache Use Cases and How ElastiCache Can Help](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/elasticache-use-cases.html)
 - [How to work with Cluster Mode on Amazon ElastiCache for Redis](https://aws.amazon.com/blogs/database/work-with-cluster-mode-on-amazon-elasticache-for-redis/)
 - [Monitoring best practices with Amazon ElastiCache for Redis using Amazon CloudWatch](https://aws.amazon.com/blogs/database/monitoring-best-practices-with-amazon-elasticache-for-redis-using-amazon-cloudwatch/)
-- [Amazon ElastiCache Deep Dive](https://pages.awscloud.com/rs/112-TZM-766/images/Session%201%20-%20ElastiCache-DeepDive_v2_rev.pdf)
 - [Serving Billions of Ads in Just 100 ms Using Amazon Elasticache for Redis](https://aws.amazon.com/ko/blogs/architecture/serving-billions-of-ads-with-amazon-elasticache-for-redis/)
+- [Basic Redis Rate-limiting Demo Python (Django)](https://github.com/redis-developer/basic-rate-limiting-demo-python)
 
 ## Redis
 - [Understanding Redis replication](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Replication.Redis.Groups.html)
+

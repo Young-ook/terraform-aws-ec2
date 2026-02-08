@@ -36,3 +36,12 @@ Run terraform:
 terraform init
 terraform apply
 ```
+
+# Additional Resources
+
+## Amazon RDS Proxy
+- [Improving application availability with Amazon RDS Proxy](https://aws.amazon.com/blogs/database/improving-application-availability-with-amazon-rds-proxy/)
+
+## ProxySQL
+- [Load Balancing ProxySQL in AWS](https://www.percona.com/blog/load-balancing-proxysql-in-aws/)
+

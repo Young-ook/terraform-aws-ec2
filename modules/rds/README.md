@@ -29,3 +29,14 @@ terraform apply
 ```
 
 # Additional Resources
+
+## Amazon RDS
+- [How can I increase the binlog retention in my Aurora MySQL-Compatible DB cluster?](https://repost.aws/knowledge-center/aurora-mysql-increase-binlog-retention)
+- [Is Amazon RDS for PostgreSQL or Amazon Aurora PostgreSQL a better choice for me?](https://aws.amazon.com/blogs/database/is-amazon-rds-for-postgresql-or-amazon-aurora-postgresql-a-better-choice-for-me/)
+- [Introducing the Aurora Storage Engine](https://aws.amazon.com/ko/blogs/database/introducing-the-aurora-storage-engine/)
+- [Improve application availability with the AWS JDBC Driver for Amazon Aurora MySQL](https://aws.amazon.com/ko/blogs/database/improve-application-availability-with-the-aws-jdbc-driver-for-amazon-aurora-mysql)
+- [Amazon Aurora-MySQL Workshop](https://catalog.workshops.aws/awsauroramysql/en-US)
+- [Modernizing the Amazon Database Infrastructure](https://d1.awsstatic.com/whitepapers/modernizing-amazon-database-infrastructure.pdf?dbd_how1)
+- [How LogMeIn migrated a billion records online from Oracle to Amazon Aurora and achieved sub-millisecond response time](https://aws.amazon.com/blogs/modernizing-with-aws/how-logmein-migrated-a-billion-records-online-from-oracle-to-amazon-aurora-and-achieved-sub-millisecond-response-time/)
+- [RDS Snapshot Export to S3 Pipeline](https://github.com/aws-samples/rds-snapshot-export-to-s3-pipeline)
+
