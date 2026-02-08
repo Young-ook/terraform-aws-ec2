@@ -7,6 +7,17 @@ This module requires *terraform*. If you don't have the terraform tool in your e
 
 ### Quickstart
 ```
+module "vpc" {
+  source  = "Young-ook/ec2/aws//modules/vpc"
+  version = "1.0.8"
+}
+
+module "rds" {
+  source  = "Young-ook/ec2/aws//modules/rds"
+  vpc     = module.vpc.vpc.id
+  subnets = values(module.vpc.subnets["private"])
+}
+
 module "proxy" {
   source     = "Young-ook/ec2/aws//modules/rds-proxy"
   subnets    = values(module.vpc.subnets["private"])

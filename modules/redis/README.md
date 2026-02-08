@@ -9,7 +9,7 @@ This module requires *terraform*. If you don't have the terraform tool in your e
 ```
 module "vpc" {
   source  = "Young-ook/ec2/aws//modules/vpc"
-  version = "1.0.5"
+  version = "1.0.8"
 }
 
 module "redis" {
