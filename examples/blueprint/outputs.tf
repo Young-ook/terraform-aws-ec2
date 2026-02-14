@@ -11,3 +11,14 @@ output "ssm-doc" {
     envoy    = aws_ssm_document.envoy.arn
   }
 }
+
+output "rds" {
+  description = "Aurora cluster"
+  value       = module.rds.cluster
+  sensitive   = true
+}
+
+output "rds-proxy" {
+  description = "RDS proxy"
+  value       = module.rds-proxy.proxy
+}

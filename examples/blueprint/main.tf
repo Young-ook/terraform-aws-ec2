@@ -301,7 +301,7 @@ resource "time_sleep" "rdswait" {
   create_duration = "60s"
 }
 
-module "proxy" {
+module "rds-proxy" {
   depends_on = [time_sleep.rdswait]
   source     = "Young-ook/ec2/aws//modules/rds-proxy"
   version    = "1.0.9"
