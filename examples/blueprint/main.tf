@@ -292,8 +292,8 @@ module "rds" {
   vpc       = module.vpc.vpc.id
   subnets   = slice(values(module.vpc.subnets["private"]), 0, 3)
   cidrs     = [module.vpc.vpc.cidr_block]
-  cluster   = var.aurora_cluster
-  instances = var.aurora_instances
+  cluster   = var.rds_cluster
+  instances = var.rds_instances
 }
 
 resource "time_sleep" "rdswait" {

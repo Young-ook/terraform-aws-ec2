@@ -1,5 +1,5 @@
 tags = { example = "ec2_blueprint" }
-aurora_cluster = {
+rds_cluster = {
   engine            = "aurora-mysql"
   family            = "aurora-mysql8.0"
   version           = "8.0.mysql_aurora.3.01.0"
@@ -13,7 +13,7 @@ aurora_cluster = {
     character_set_client = "utf8"
   }
 }
-aurora_instances = [
+rds_instances = [
   {
     instance_type = "db.r6g.large"
     instance_parameters = {
