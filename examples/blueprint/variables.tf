@@ -36,6 +36,17 @@ variable "toggles" {
   }
 }
 
+### database
+variable "aurora_cluster" {
+  description = "RDS Aurora for mysql cluster definition"
+  default     = {}
+}
+
+variable "aurora_instances" {
+  description = "RDS Aurora for mysql instances definition"
+  default     = []
+}
+
 ### description
 variable "name" {
   description = "The logical name of the module instance"

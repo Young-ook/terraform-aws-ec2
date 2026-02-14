@@ -303,8 +303,8 @@ resource "time_sleep" "rdswait" {
 
 module "proxy" {
   depends_on = [time_sleep.rdswait]
-  source    = "Young-ook/ec2/aws//modules/rds-proxy"
-  version   = "1.0.9"
+  source     = "Young-ook/ec2/aws//modules/rds-proxy"
+  version    = "1.0.9"
   tags       = var.tags
   subnets    = slice(values(module.vpc.subnets["private"]), 0, 3)
   proxy_config = {
