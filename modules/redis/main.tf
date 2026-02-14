@@ -71,8 +71,8 @@ resource "aws_elasticache_replication_group" "redis" {
 
 ### observability/logs
 module "logs" {
-  source  = "Young-ook/eventbridge/aws//modules/logs"
-  version = "0.0.12"
+  source  = "Young-ook/fis/aws//modules/cwlogs"
+  version = "2.0.4"
   name    = local.name
   log_group = {
     namespace      = "/aws/elasticache"
