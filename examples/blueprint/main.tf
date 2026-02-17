@@ -23,7 +23,7 @@ module "vpc" {
   vpc_config = var.use_default_vpc ? null : {
     azs         = var.azs
     cidr        = "10.10.0.0/16"
-    subnet_type = "public"
+    subnet_type = "private"
     single_ngw  = true
   }
   vpce_config = [
@@ -164,7 +164,15 @@ module "ec2" {
         task   = "${path.module}/apps/loadtest/test.py"
       })
       policy_arns = ["arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"]
-    }
+    },
+    {
+      name          = "sysbench"
+      min_size      = 1
+      max_size      = 1
+      desired_size  = 1
+      instance_type = "m5.large"
+      tags          = { purpose = "sysbench" }
+    },
   ]
 }
 
@@ -236,14 +244,14 @@ resource "aws_ssm_association" "cwagent" {
   }
 }
 
-resource "time_sleep" "wait" {
+resource "time_sleep" "cwwait" {
   depends_on      = [aws_ssm_association.cwagent]
   create_duration = "15s"
 }
 
 resource "aws_ssm_association" "diskfull" {
   for_each         = toset(lookup(var.toggles, "diskfull", false) ? ["enabled"] : [])
-  depends_on       = [time_sleep.wait]
+  depends_on       = [time_sleep.cwwait]
   name             = aws_ssm_document.diskfull.name
   association_name = "Run-Disk-Stress-Test"
   parameters = {
@@ -259,7 +267,7 @@ resource "aws_ssm_association" "diskfull" {
 
 resource "aws_ssm_association" "envoy" {
   for_each         = toset(lookup(var.toggles, "envoy", false) ? ["enabled"] : [])
-  depends_on       = [time_sleep.wait]
+  depends_on       = [time_sleep.cwwait]
   name             = aws_ssm_document.envoy.name
   association_name = "Install-EnvoyProxy"
   parameters = {
@@ -272,5 +280,38 @@ resource "aws_ssm_association" "envoy" {
   targets {
     key    = "tag:envoy"
     values = ["enabled"]
+  }
+}
+
+### database - amazon aurora
+module "rds" {
+  source    = "Young-ook/ec2/aws//modules/rds"
+  version   = "1.0.9"
+  name      = var.name
+  tags      = var.tags
+  vpc       = module.vpc.vpc.id
+  subnets   = slice(values(module.vpc.subnets["private"]), 0, 3)
+  cidrs     = [module.vpc.vpc.cidr_block]
+  cluster   = var.rds_cluster
+  instances = var.rds_instances
+}
+
+resource "time_sleep" "rdswait" {
+  depends_on      = [module.vpc, module.rds]
+  create_duration = "60s"
+}
+
+module "rds-proxy" {
+  depends_on = [time_sleep.rdswait]
+  source     = "Young-ook/ec2/aws//modules/rds-proxy"
+  version    = "1.0.9"
+  tags       = var.tags
+  subnets    = slice(values(module.vpc.subnets["private"]), 0, 3)
+  proxy_config = {
+    cluster_id = module.rds.cluster.id
+  }
+  auth_config = {
+    user_name     = module.rds.user.name
+    user_password = module.rds.user.password
   }
 }

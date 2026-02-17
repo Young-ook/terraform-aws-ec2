@@ -1,7 +1,7 @@
 [[English](README.md)] [[한국어](README.ko.md)]
 
 # EC2 Blueprint
-This is EC2 Blueprint example helps you compose complete [AWS SSM (Systems Manager)](https://aws.amazon.com/systems-manager/) enabled EC2 clusters that are fully bootstrapped with the operational software that is needed to deploy and operate workloads. With this EC2 Blueprint example, you describe the configuration for the desired state of your EC2 environment, such as the control plane, worker nodes, and applications, as an Infrastructure as Code (IaC) template/blueprint. Once a blueprint is configured, you can use it to stamp out consistent environments across multiple AWS accounts and Regions using your automation workflow tool, such as Jenkins, CodePipeline. Also, you can use EC2 Blueprint to easily bootstrap an EC2 cluster with user-data for initial configuration whatever you want on your instance. EC2 Blueprints also helps you implement relevant security controls needed to operate workloads from multiple teams in the same cluster.
+This is EC2 Blueprint example helps you compose complete [AWS SSM (Systems Manager)](https://aws.amazon.com/systems-manager/) enabled EC2 clusters fully bootstrapped with the operational software that is needed to deploy and operate workloads and cloud-native databases for large scale application. With this EC2 Blueprint example, you describe the configuration for the desired state of your EC2 environment, such as the control plane, worker nodes, and applications, as an Infrastructure as Code (IaC) template/blueprint. Once a blueprint is configured, you can use it to stamp out consistent environments across multiple AWS accounts and Regions using your automation workflow tool, such as Jenkins, CodePipeline. Also, you can use EC2 Blueprint to easily bootstrap an EC2 cluster with user-data for initial configuration whatever you want on your instance. EC2 Blueprints also helps you implement relevant security controls needed to operate workloads from multiple teams in the same cluster.
 
 ## Setup
 ### Prerequiesites
@@ -41,6 +41,11 @@ terraform apply -var-file fixture.tc1.tfvars
 
 ## Applications
 - [Warm Pools](./apps/README.md#ec2-auto-scaling-warm-pools)
+- [Sysbench](./apps/README.md#sysbench)
+
+## Utilities
+### Amazon RDS Proxy
+By using [Amazon RDS Proxy](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html), you can allow your applications to pool and share database connections to improve their ability to scale. RDS Proxy makes applications more resilient to database failures by automatically connecting to a standby DB instance while preserving application connections. This is an example on how to create Amazon Aurora cluster and RDS Proxy on the AWS. If you want know more details about RDS Proxy terraform module, please check out [README](../..//modules/rds-proxy/README.md).
 
 ## Clean up
 To destroy all infrastrcuture, run terraform:
@@ -59,6 +64,7 @@ terraform destroy -var-file fixture.tc1.tfvars
 ```
 
 # Additional Resources
+
 ## Amazon EC2
 - [Scaling your applications faster with EC2 Auto Scaling Warm Pools](https://aws.amazon.com/blogs/compute/scaling-your-applications-faster-with-ec2-auto-scaling-warm-pools/)
 - [Using Auto Scaling lifecycle hooks, Lambda, and EC2 Run Command](https://github.com/aws-samples/aws-lambda-lifecycle-hooks-function)
@@ -68,9 +74,29 @@ terraform destroy -var-file fixture.tc1.tfvars
 - [Migrate your Amazon EBS volumes from gp2 to gp3 and save up to 20% on costs](https://aws.amazon.com/blogs/storage/migrate-your-amazon-ebs-volumes-from-gp2-to-gp3-and-save-up-to-20-on-costs/)
 - [How to Automate Cost and Performance Improvement Through gp3 Upgrades Using AWS Systems Manager](https://aws.amazon.com/blogs/apn/how-to-automate-cost-and-performance-improvement-through-gp3-upgrades-using-aws-systems-manager/)
 
+## Amazon ElastiCache for Redis
+- [Amazon ElastiCache for Redis](../../modules/redis/README.md)
+
+## Amazon RDS
+- [Amazon RDS](../../modules/rds/README.md)
+
+## Amazon RDS Proxy
+- [Amazon RDS Proxy](../../modules/rds-proxy/README.md)
+
+## AWS DMS (Database Migration Service)
+- [Debugging Your AWS DMS Migrations: What to Do When Things Go Wrong (Part 1)](https://aws.amazon.com/blogs/database/debugging-your-aws-dms-migrations-what-to-do-when-things-go-wrong-part-1/)
+- [Debugging Your AWS DMS Migrations: What to Do When Things Go Wrong (Part 2)](https://aws.amazon.com/blogs/database/debugging-your-aws-dms-migrations-what-to-do-when-things-go-wrong-part-2/)
+- [Debugging Your AWS DMS Migrations: What to Do When Things Go Wrong (Part 3)](https://aws.amazon.com/blogs/database/debugging-your-aws-dms-migrations-what-to-do-when-things-go-wrong-part-3/)
+
 ## AWS Graviton
 - [AWS Graviton Getting Started](https://github.com/aws/aws-graviton-getting-started)
 - [Reduce costs and improve sustainability with AWS Graviton](https://catalog.workshops.aws/graviton/en-US)
+- [Amazon's Arm-based Graviton2 Against AMD and Intel](https://www.anandtech.com/show/15578/cloud-clash-amazon-graviton2-arm-against-intel-and-amd)
+- [Graviton2 Single Threaded Performance](https://www.anandtech.com/show/15578/cloud-clash-amazon-graviton2-arm-against-intel-and-amd/5)
+- [Key considerations in moving to Graviton2 for Amazon RDS and Amazon Aurora databases](https://aws.amazon.com/blogs/database/key-considerations-in-moving-to-graviton2-for-amazon-rds-and-amazon-aurora-databases/)
 
 ## AWS for Games
 - [The Unique Architecture behind Amazon Games’ Seamless MMO New World](https://aws.amazon.com/blogs/gametech/the-unique-architecture-behind-amazon-games-seamless-mmo-new-world/)
+
+## Architecture Patterns
+- [CQRS](https://martinfowler.com/bliki/CQRS.html)

@@ -169,5 +169,24 @@ Options:
 ![aws-ec2-bzt-dashboard](../../../images/aws-ec2-bzt-dashboard.png)
 ![aws-ec2-bzt-log](../../../images/aws-ec2-bzt-log.png)
 
+## Sysbench
+### Connect to EC2
+Move to the EC2 service page on the AWS Management Conosol and select Instances button on the left side menu. Find an instance that you launched. Select the instance and click 'Connect' button on top of the window. After then you will see three tabs EC2 Instance Connect, Session Manager, SSH client. Select Session Manager tab and follow the instruction on the screen.
+
+### Install sysbench
+Run below command to install sysbench and database clients on your EC2 workspace:
+```
+curl -s https://packagecloud.io/install/repositories/akopytov/sysbench/script.rpm.sh | sudo bash
+sudo yum -y install mysql postgresql sysbench
+```
+
+Make sure the installation is complete. If the output looks like `sysbench 1.0.20`, then sysbench is installed properly.
+```
+sysbench --version
+```
+
 # Additional Resources
 - [Distributed Load Testing on AWS](https://github.com/aws-solutions/distributed-load-testing-on-aws)
+- [Performance Test: Amazon Aurora-MySQL on AWS Graviton2](https://github.com/gnosia93/oracle-to-postgres/blob/main/appendix/mysql-aurora-graviton2.md)
+- [Performance Test: Amazon Aurora-PostgreSQL on AWS Graviton2](https://github.com/gnosia93/oracle-to-postgres/blob/main/appendix/postgres-aurora-graviton2.md)
+
