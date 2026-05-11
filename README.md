@@ -5,7 +5,7 @@
 
 ## Examples
 - [Amazon EC2 Blueprint](https://github.com/Young-ook/terraform-aws-ec2/tree/main/examples/blueprint)
-- [Amazon VPC Network](https://github.com/Young-ook/terraform-aws-ec2/tree/main/examples/network)
+- [Amazon VPC Network Blueprint](https://github.com/Young-ook/terraform-aws-ec2/tree/main/examples/network)
 - [AWS FIS Blueprint (Chaos Engineering)](https://github.com/Young-ook/terraform-aws-fis/blob/main/examples/blueprint)
 - [AWS Identity and Access Management Blueprint](https://github.com/Young-ook/terraform-aws-passport/tree/main/examples/blueprint)
 
